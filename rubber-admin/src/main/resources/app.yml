@@ -10,12 +10,10 @@ solon.app:
 
 solon.cloud.water:
   server: "waterapi:9371"
-  log:
-    default: "water_log_admin"
   event:
-    seal: "b5fZK49x71Rnn5Cl"
+    seal: "MSiFuTyeBEoIt0ZN"
   config:
-    load: "grit:grit.yml,grit:gritclient.yml,water_settings"
+    load: "grit:grit.yml,grit:gritclient.yml"
 
 solon.logging.appender:
   console:
