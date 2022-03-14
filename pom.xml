@@ -44,5 +44,6 @@
 
     <modules>
         <module>rubber-api</module>
+        <module>rubber-admin</module>
     </modules>
 </project>
