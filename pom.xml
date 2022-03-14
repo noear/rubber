@@ -11,29 +11,6 @@
 
     <name>${project.artifactId}</name>
     <description>Java project for rubber</description>
-    <url>https://github.com/noear/rubber</url>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <name>noear</name>
-            <email>noear@live.cn</email>
-            <organization>noear.org</organization>
-            <organizationUrl>http://www.noear.org</organizationUrl>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:git@github.com:noear/water.git</connection>
-        <developerConnection>scm:git:git@github.com:noear/water.git</developerConnection>
-        <url>https://github.com/noear/water</url>
-    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
