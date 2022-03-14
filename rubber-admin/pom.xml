@@ -23,8 +23,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <snack3.ver>3.2.16</snack3.ver>
         <weed3.ver>3.4.19</weed3.ver>
+        <grit.ver>1.0.8</grit.ver>
+        <rock.ver>2.0.4</rock.ver>
         <redisx.ver>1.3.3</redisx.ver>
         <esearchx.ver>1.0.9</esearchx.ver>
 
@@ -39,12 +40,34 @@
     <dependencies>
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.boot.jlhttp</artifactId>
+            <artifactId>solon-web</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.extend.properties.yaml</artifactId>
+            <artifactId>solon.extend.cors</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.75</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.noear</groupId>
+            <artifactId>solon.extend.sessionstate.jwt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.noear</groupId>
+            <artifactId>solon.auth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.noear</groupId>
+            <artifactId>water.server</artifactId>
+            <version>${water.ver}</version>
         </dependency>
 
         <dependency>
@@ -59,33 +82,25 @@
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>luffy.base</artifactId>
-            <version>${luffy.ver}</version>
+            <artifactId>grit.server.ui-durian</artifactId>
+            <version>${grit.ver}</version>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>luffy.executor.s.javascript</artifactId>
-            <version>${luffy.ver}</version>
+            <artifactId>grit-solon-plugin</artifactId>
+            <version>${grit.ver}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.6</version>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>4.0.3</version>
         </dependency>
 
-        <!-- ////////// -->
         <dependency>
             <groupId>org.noear</groupId>
             <artifactId>redisx</artifactId>
-            <version>${redisx.ver}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.noear</groupId>
-            <artifactId>esearchx</artifactId>
-            <version>${esearchx.ver}</version>
         </dependency>
 
         <dependency>
@@ -101,22 +116,17 @@
         </dependency>
 
         <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>${HikariCP.ver}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>1.18.22</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.noear</groupId>
+            <artifactId>solon-test</artifactId>
+            <version>${solon.ver}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -130,6 +140,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
+                    <compilerArgument>-parameters</compilerArgument>
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
@@ -148,7 +159,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>rubberapi.App</mainClass>
+                            <mainClass>rubberadmin.App</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -180,7 +191,7 @@
                     <!--镜像的FROM，使用java官方镜像-->
                     <baseImage>adoptopenjdk/openjdk11</baseImage>
                     <!--该镜像的容器启动后，直接运行spring boot工程-->
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar", "--server.port=9375","--drift=1"]</entryPoint>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar", "--server.port=9373","--drift=1"]</entryPoint>
                     <!--构建镜像的配置信息-->
                     <resources>
                         <resource>
@@ -194,4 +205,5 @@
         </plugins>
 
     </build>
+
 </project>

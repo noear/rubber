@@ -1,0 +1,75 @@
+package rubberadmin;
+
+import org.noear.snack.ONode;
+import org.noear.solon.SolonApp;
+import org.noear.solon.auth.AuthUtil;
+import org.noear.solon.extend.health.HealthHandler;
+import org.noear.water.WaterClient;
+import org.noear.water.WW;
+import org.noear.water.model.ConfigM;
+import org.noear.water.utils.DsCacheUtils;
+import org.noear.weed.DbContext;
+import org.noear.weed.WeedConfig;
+import rubberadmin.dso.SessionPerms;
+import rubberadmin.dso.auth.AuthProcessorImpl;
+
+public class Config {
+    public static final DbContext water_paas;
+    public static final DbContext water_paas_request;
+
+
+    //paas 根地址
+    public static String faas_uri() {
+        return cfg("faas_uri").getString();
+    }
+
+    //raas 根地址
+    public static String raas_uri() {
+        return cfg("raas_uri").getString();
+    }
+
+    //是否使用标答检查器？
+    public static boolean is_use_tag_checker() {
+        return "1".equals(cfg("enable_tag_checker").getString());
+    }
+
+    public static String waterfaas_secretKey;
+
+    //================================
+    //
+    //获取一个数据库配置
+
+    static {
+        WeedConfig.isDebug = false;
+        WeedConfig.isUsingValueExpression = false;
+
+        water_paas = DsCacheUtils.getDb(cfg(WW.water_paas).value, true);
+        water_paas_request = DsCacheUtils.getDb(cfg(WW.water_paas_request).value, true, water_paas);
+    }
+
+    public static void tryInit(SolonApp app) {
+        waterfaas_secretKey = app.cfg().get("waterfaas.secretKey");
+
+        //适配认证框架
+        AuthUtil.adapter()
+                .loginUrl("/login")
+                .addRule(r -> r.include("**").verifyIp().failure((c, t) -> c.output(c.realIp() + ", not safelist!")))
+                .addRule(r -> r.exclude("/login**").exclude(HealthHandler.HANDLER_PATH).exclude("/_**").verifyPath())
+                .addRule(r -> r.include("/grit/ui/**").verifyPermissions(SessionPerms.admin))
+                .processor(new AuthProcessorImpl())
+                .failure((ctx, rst) -> {
+                    ctx.outputAsJson(new ONode().set("code", 403).set("msg", "没有权限").toJson());
+                });
+    }
+
+    //================================
+    //
+
+    public static ConfigM cfg(String key) {
+        if (key.indexOf("/") < 0) {
+            return WaterClient.Config.get(WW.water, key);
+        } else {
+            return WaterClient.Config.getByTagKey(key);
+        }
+    }
+}

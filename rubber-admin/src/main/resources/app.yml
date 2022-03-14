@@ -1,0 +1,37 @@
+solon.extend: wateradmin_ext
+
+server.port: 9373
+server.session.timeout: 360000 #10h
+
+solon.app:
+  name: "wateradmin"
+  group: "water"
+  title: "WATER"
+
+solon.cloud.water:
+  server: "waterapi:9371"
+  log:
+    default: "water_log_admin"
+  event:
+    seal: "b5fZK49x71Rnn5Cl"
+  config:
+    load: "grit:grit.yml,grit:gritclient.yml,water_settings"
+
+solon.logging.appender:
+  console:
+    level: "INFO"
+
+solon.logging.logger:
+  "org.eclipse.jetty.*":
+    level: "WARN"
+  "com.zaxxer.hikari.*":
+    level: "WARN"
+
+
+waterfaas.secretKey: "0zJt0J88TkIvqYgC"
+
+#water.log:
+#  gzip: 1
+#  level: 2
+#  interval: 1000
+#  packetSize: 100
