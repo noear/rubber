@@ -6,9 +6,9 @@ import org.noear.water.WW;
 import rubberadmin.dso.ErrorListener;
 import rubberadmin.dso.InitPlugin;
 
-public class App {
+public class RubberadminApp {
     public static void main(String[] args) throws Exception {
-        Solon.start(App.class, args, x -> {
+        Solon.start(RubberadminApp.class, args, x -> {
             Config.tryInit(x);
 
             x.enableErrorAutoprint(false);

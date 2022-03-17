@@ -16,14 +16,14 @@ import rubberapi.controller.release.SchemeController;
 import rubberapi.dso.CacheUtil;
 
 
-public class App {
+public class RubberapiApp {
 
     public static void main(String[] args) throws Exception{
 
         //开始
         JtRun.init();
 
-        Solon.start(App.class, args, (x) -> {
+        Solon.start(RubberapiApp.class, args, (x) -> {
             Config.tryInit();
 
             x.enableErrorAutoprint(false);
