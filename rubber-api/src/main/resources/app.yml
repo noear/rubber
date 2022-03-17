@@ -1,6 +1,6 @@
-solon.extend: "waterraas_ext"
+solon.extend: "rubberapi_ext"
 
-server.port: 9375
+server.port: 9262
 
 solon.app:
   group: "water"

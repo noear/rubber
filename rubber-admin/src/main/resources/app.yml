@@ -1,6 +1,6 @@
-solon.extend: wateradmin_ext
+solon.extend: "rubberadmin_ext"
 
-server.port: 9373
+server.port: 9261
 server.session.timeout: 360000 #10h
 
 solon.app:
