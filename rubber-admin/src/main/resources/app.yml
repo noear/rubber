@@ -4,16 +4,16 @@ server.port: 9373
 server.session.timeout: 360000 #10h
 
 solon.app:
-  name: "wateradmin"
   group: "water"
-  title: "WATER"
+  name: "rubber-admin"
+  title: "RUBBER"
 
 solon.cloud.water:
   server: "waterapi:9371"
   event:
-    seal: "MSiFuTyeBEoIt0ZN"
+    seal: "fh9XvMEV8H3Yi8ov"
   config:
-    load: "grit:grit.yml,grit:gritclient.yml"
+    load: "grit:grit.yml,grit:gritclient.yml,water_settings"
 
 solon.logging.appender:
   console:
@@ -27,9 +27,3 @@ solon.logging.logger:
 
 
 waterfaas.secretKey: "0zJt0J88TkIvqYgC"
-
-#water.log:
-#  gzip: 1
-#  level: 2
-#  interval: 1000
-#  packetSize: 100

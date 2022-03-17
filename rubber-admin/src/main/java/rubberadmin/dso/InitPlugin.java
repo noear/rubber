@@ -13,6 +13,7 @@ import org.noear.water.WaterClient;
 import org.noear.water.config.ServerConfig;
 import org.noear.water.utils.TextUtils;
 import org.noear.weed.WeedConfig;
+import rubberadmin.dso.db.DbWaterCfgSafeApi;
 
 /**
  * 行为跟踪初始化
@@ -42,7 +43,11 @@ public class InitPlugin implements Plugin {
 
         initWeed();
 
-        ServerConfig.taskToken = "";
+        try {
+            ServerConfig.taskToken = DbWaterCfgSafeApi.getServerTokenOne();
+        } catch (Throwable e) {
+            log.error("ServerConfig.taskToken init error: {}", e);
+        }
     }
 
     private void initWeed() {

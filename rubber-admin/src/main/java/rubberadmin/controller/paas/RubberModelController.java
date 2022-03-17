@@ -1,21 +1,25 @@
 package rubberadmin.controller.paas;
 
 import com.alibaba.fastjson.JSONObject;
-import org.noear.solon.annotation.Controller;
-import org.noear.solon.annotation.Mapping;
 import org.noear.solon.auth.annotation.AuthPermissions;
 import org.noear.solon.core.handle.Context;
-import org.noear.solon.core.handle.ModelAndView;
 import org.noear.solon.core.handle.UploadedFile;
 import org.noear.water.utils.*;
+
+
+import org.noear.solon.annotation.Controller;
+import org.noear.solon.annotation.Mapping;
+import org.noear.solon.core.handle.ModelAndView;
 import rubberadmin.controller.BaseController;
-import rubberadmin.dso.SessionPerms;
 import rubberadmin.dso.TagChecker;
+import rubberadmin.dso.SessionPerms;
 import rubberadmin.dso.db.DbRubberApi;
+import rubberadmin.dso.db.DbWaterCfgApi;
 import rubberadmin.models.TagCountsModel;
-import rubberadmin.models.water_paas.ModelSerializeModel;
+import rubberadmin.models.water_cfg.ConfigModel;
 import rubberadmin.models.water_paas.RebberModelFieldModel;
 import rubberadmin.models.water_paas.RebberModelModel;
+import rubberadmin.models.water_paas.ModelSerializeModel;
 import rubberadmin.viewModels.ViewModel;
 
 import java.sql.SQLException;
@@ -81,13 +85,11 @@ public class RubberModelController extends BaseController {
             model_id = 0;
         }
 
-
+        List<ConfigModel> configs = DbWaterCfgApi.getDbConfigs();
         List<String> option_sources = new ArrayList<>();
-        //todo: del
-//        List<ConfigModel> configs = DbWaterCfgApi.getDbConfigs();
-//        for (ConfigModel config : configs) {
-//            option_sources.add(config.tag + "/" + config.key);
-//        }
+        for (ConfigModel config : configs) {
+            option_sources.add(config.tag + "/" + config.key);
+        }
         viewModel.put("option_sources", option_sources);
 
 

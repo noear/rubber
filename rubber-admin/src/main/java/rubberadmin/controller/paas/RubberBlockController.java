@@ -1,21 +1,25 @@
 package rubberadmin.controller.paas;
 
 import com.alibaba.fastjson.JSONObject;
-import org.noear.solon.annotation.Controller;
-import org.noear.solon.annotation.Mapping;
 import org.noear.solon.auth.annotation.AuthPermissions;
 import org.noear.solon.core.handle.Context;
-import org.noear.solon.core.handle.ModelAndView;
 import org.noear.solon.core.handle.UploadedFile;
 import org.noear.water.utils.*;
 import org.noear.weed.DataItem;
 import org.noear.weed.DataList;
+
+
+import org.noear.solon.annotation.Controller;
+import org.noear.solon.annotation.Mapping;
+import org.noear.solon.core.handle.ModelAndView;
 import rubberadmin.controller.BaseController;
+import rubberadmin.dso.TagChecker;
 import rubberadmin.dso.Session;
 import rubberadmin.dso.SessionPerms;
-import rubberadmin.dso.TagChecker;
 import rubberadmin.dso.db.DbRubberApi;
+import rubberadmin.dso.db.DbWaterCfgApi;
 import rubberadmin.models.TagCountsModel;
+import rubberadmin.models.water_cfg.ConfigModel;
 import rubberadmin.models.water_paas.RebberBlockModel;
 import rubberadmin.viewModels.ViewModel;
 
@@ -90,15 +94,11 @@ public class RubberBlockController extends BaseController {
             block_id = 0;
         }
 
-
+        List<ConfigModel> configs= DbWaterCfgApi.getDbConfigsEx();
         List<String> option_sources = new ArrayList<>();
-
-        //todo: del
-//        List<ConfigModel> configs= DbWaterCfgApi.getDbConfigsEx();
-//        for(ConfigModel config : configs){
-//            option_sources.add(config.tag+"/"+config.key);
-//        }
-
+        for(ConfigModel config : configs){
+            option_sources.add(config.tag+"/"+config.key);
+        }
         viewModel.put("option_sources",option_sources);
 
         RebberBlockModel block = DbRubberApi.getBlockById(block_id);

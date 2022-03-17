@@ -14,9 +14,12 @@ import rubberadmin.dso.SessionPerms;
 import rubberadmin.dso.auth.AuthProcessorImpl;
 
 public class Config {
+    public static final DbContext water;
     public static final DbContext water_paas;
     public static final DbContext water_paas_request;
 
+    public static ConfigM water_log_store = cfg(WW.water_log_store);
+    public static ConfigM water_msg_store = cfg(WW.water_msg_store);
 
     //paas 根地址
     public static String faas_uri() {
@@ -33,6 +36,7 @@ public class Config {
         return "1".equals(cfg("enable_tag_checker").getString());
     }
 
+    public static String waterfaas_secretKey;
 
     //================================
     //
@@ -42,11 +46,13 @@ public class Config {
         WeedConfig.isDebug = false;
         WeedConfig.isUsingValueExpression = false;
 
-        water_paas = DsCacheUtils.getDb(cfg(WW.water_paas).value, true);
+        water = DsCacheUtils.getDb(cfg(WW.water).value, true);
+        water_paas = DsCacheUtils.getDb(cfg(WW.water_paas).value, true, water);
         water_paas_request = DsCacheUtils.getDb(cfg(WW.water_paas_request).value, true, water_paas);
     }
 
     public static void tryInit(SolonApp app) {
+        waterfaas_secretKey = app.cfg().get("waterfaas.secretKey");
 
         //适配认证框架
         AuthUtil.adapter()

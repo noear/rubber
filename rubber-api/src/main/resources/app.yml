@@ -1,15 +1,15 @@
-solon.extend: "rubber_ext"
+solon.extend: "waterraas_ext"
 
 server.port: 9375
 
 solon.app:
+  group: "water"
   name: "rubber-api"
-  group: "rubber"
 
 solon.cloud.water:
   server: "waterapi:9371"
   event:
-    seal: "EPscAInrdcEXhm8X"
+    seal: "kPbb5KWi2FzPbA43"
 
 solon.logging.appender:
   console:
