@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td>请求时间：</td>
-            <td>${log.start_fulltime}（${log.timespan}ms）</td>
+            <td>${log.start_fulltime?string('yyyy-MM-dd HH:mm:ss')}（${log.timespan}ms）</td>
         </tr>
         <tr>
             <td>请求参数：</td>
