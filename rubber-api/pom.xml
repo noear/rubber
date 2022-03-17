@@ -22,8 +22,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
 
-        <solon.ver>1.6.30</solon.ver>
-
         <snack3.ver>3.2.16</snack3.ver>
         <weed3.ver>3.4.19</weed3.ver>
         <rock.ver>2.0.4</rock.ver>
