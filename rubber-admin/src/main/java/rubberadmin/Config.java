@@ -18,9 +18,6 @@ public class Config {
     public static final DbContext water_paas;
     public static final DbContext water_paas_request;
 
-    public static ConfigM water_log_store = cfg(WW.water_log_store);
-    public static ConfigM water_msg_store = cfg(WW.water_msg_store);
-
     //paas 根地址
     public static String faas_uri() {
         return cfg("faas_uri").getString();
