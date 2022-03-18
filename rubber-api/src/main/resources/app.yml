@@ -3,7 +3,7 @@ solon.extend: "rubberapi_ext"
 server.port: 9262
 
 solon.app:
-  group: "water"
+  group: "rubber"
   name: "rubber-api"
 
 solon.cloud.water:
