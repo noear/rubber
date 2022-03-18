@@ -13,7 +13,7 @@ solon.cloud.water:
   event:
     seal: "fh9XvMEV8H3Yi8ov"
   config:
-    load: "grit:grit.yml,grit:gritclient.yml,water_settings"
+    load: "grit:grit.yml,grit:gritclient.yml"
 
 solon.logging.appender:
   console:
