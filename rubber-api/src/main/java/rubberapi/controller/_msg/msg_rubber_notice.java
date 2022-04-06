@@ -15,7 +15,7 @@ import java.util.Map;
 @CloudEvent("rubber.notice")
 public class msg_rubber_notice implements CloudEventHandler {
     @Override
-    public boolean handler(Event event) throws Throwable {
+    public boolean handle(Event event) throws Throwable {
         ONode jReq = ONode.load(event.content());
         String request_id = jReq.get("request_id").getString();
         LogRequestModel log = Rubber.get(request_id);

@@ -15,7 +15,7 @@ import rubberapi.dso.SchemeUtil;
 public class msg_rubber_task implements CloudEventHandler {
 
     @Override
-    public boolean handler(Event event) throws Throwable {
+    public boolean handle(Event event) throws Throwable {
         ONode jReq = ONode.load(event.content());
 
         String request_id = jReq.get("request_id").getString();
