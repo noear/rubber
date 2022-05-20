@@ -3,9 +3,9 @@ package rubberadmin.dso;
 import lombok.extern.slf4j.Slf4j;
 import org.noear.snack.ONode;
 import org.noear.solon.Solon;
-import org.noear.solon.SolonApp;
 import org.noear.solon.Utils;
 import org.noear.solon.cloud.CloudClient;
+import org.noear.solon.core.AopContext;
 import org.noear.solon.core.Plugin;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.logging.utils.TagsMDC;
@@ -28,17 +28,17 @@ public class InitPlugin implements Plugin {
     boolean isErrorLogEnable;
 
     @Override
-    public void start(SolonApp app) {
+    public void start(AopContext context) {
         Utils.loadClass("com.mysql.jdbc.Driver");
         Utils.loadClass("com.mysql.cj.jdbc.Driver");
 
 
         isDebugMode = Solon.cfg().isDebugMode() || Solon.cfg().isFilesMode();
 
-        String style = Solon.cfg().get("srww.weed.print.style");
+        String style = Solon.cfg().get("rubber.sql.print.style");
         isWeedStyle2 = "sql".equals(style);
-        isTrackEnable = Solon.cfg().getBool("srww.weed.track.enable", isDebugMode);
-        isErrorLogEnable = Solon.cfg().getBool("srww.weed.error.log.enable", true);
+        isTrackEnable = Solon.cfg().getBool("rubber.sql.track.enable", isDebugMode);
+        isErrorLogEnable = Solon.cfg().getBool("rubber.sql.error.log.enable", true);
 
 
         initWeed();
