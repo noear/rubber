@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.extend.cors</artifactId>
+            <artifactId>solon.web.cors</artifactId>
         </dependency>
 
         <dependency>
@@ -37,7 +37,7 @@
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.extend.sessionstate.jwt</artifactId>
+            <artifactId>solon.sessionstate.jwt</artifactId>
         </dependency>
 
         <dependency>
