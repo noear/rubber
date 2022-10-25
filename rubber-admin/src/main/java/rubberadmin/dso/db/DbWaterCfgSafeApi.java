@@ -7,9 +7,6 @@ import rubberadmin.dso.CacheUtil;
 
 import java.sql.SQLException;
 
-/**
- * @author noear 2021/11/24 created
- */
 public class DbWaterCfgSafeApi {
     private static DbContext db() {
         return Config.water;
