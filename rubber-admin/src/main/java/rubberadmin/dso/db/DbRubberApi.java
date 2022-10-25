@@ -36,8 +36,7 @@ public class DbRubberApi {
         return db().table("rubber_model")
                 .groupBy("tag")
                 .orderByAsc("tag")
-                .select("tag,count(*) counts")
-                .getList(TagCountsModel.class);
+                .selectList("tag,count(*) counts", TagCountsModel.class);
     }
 
     //获取模型tag
@@ -45,8 +44,7 @@ public class DbRubberApi {
         return db().table("rubber_actor")
                 .groupBy("tag")
                 .orderByAsc("tag")
-                .select("tag,count(*) counts")
-                .getList(TagCountsModel.class);
+                .selectList("tag,count(*) counts", TagCountsModel.class);
     }
 
     public static boolean containActorTag(List<TagCountsModel> list, String tag) {
@@ -70,8 +68,7 @@ public class DbRubberApi {
                         tb.and("(name like ? or name_display like ?)", "%" + name + "%", "%" + name + "%");
                     }
                 })
-                .select("*")
-                .getList(RebberModelModel.class);
+                .selectList("*", RebberModelModel.class);
     }
 
 
@@ -155,8 +152,7 @@ public class DbRubberApi {
 
         return db().table("rubber_model")
                 .where("model_id = ?", model_id)
-                .select("*")
-                .getItem(RebberModelModel.class);
+                .selectItem("*", RebberModelModel.class);
     }
 
     //获取数据模型的字段列表
@@ -168,16 +164,14 @@ public class DbRubberApi {
                         tb.and("(name like ? or name_display like ?)", "%" + name + "%", "%" + name + "%");
                     }
                 })
-                .select("*")
-                .getList(RebberModelFieldModel.class);
+                .selectList("*", RebberModelFieldModel.class);
     }
 
     //获取模型集合
     public static List<RebberModelModel> getModelList() throws SQLException {
         return db().table("rubber_model")
                 .orderBy("tag ASC,name ASC")
-                .select("model_id,tag,name,name_display")
-                .getList(RebberModelModel.class);
+                .selectList("model_id,tag,name,name_display", RebberModelModel.class);
     }
 
     public static List<RebberModelModel> getModelByIds(String ids) throws SQLException {
@@ -188,8 +182,7 @@ public class DbRubberApi {
 
         return db().table("rubber_model")
                 .whereIn("model_id", list)
-                .select("*")
-                .getList(RebberModelModel.class);
+                .selectList("*", RebberModelModel.class);
     }
 
 
@@ -202,8 +195,7 @@ public class DbRubberApi {
                         tb.and("(name like ? or name_display like ?)", "%" + name + "%", "%" + name + "%");
                     }
                 })
-                .select("*")
-                .getList(RebberActorModel.class);
+                .selectList("*", RebberActorModel.class);
     }
 
     //新增或修改参与人员
@@ -236,8 +228,7 @@ public class DbRubberApi {
         return db().table("rubber_scheme")
                 .groupBy("tag")
                 .orderByAsc("tag")
-                .select("tag,count(*) counts")
-                .getList(TagCountsModel.class);
+                .selectList("tag,count(*) counts", TagCountsModel.class);
     }
 
     //获取计算方案列表，通过标签和名称
@@ -249,8 +240,7 @@ public class DbRubberApi {
                         tb.and("name like ?", "%" + name + "%").or("name_display like ?", "%" + name + "%");
                     }
                 })
-                .select("*")
-                .getList(RebberSchemeModel.class);
+                .selectList("*", RebberSchemeModel.class);
     }
 
     public static List<RebberSchemeModel> getSchemeByIds(String ids) throws SQLException {
@@ -261,8 +251,7 @@ public class DbRubberApi {
 
         return db().table("rubber_scheme")
                 .whereIn("scheme_id", list)
-                .select("*")
-                .getList(RebberSchemeModel.class);
+                .selectList("*", RebberSchemeModel.class);
     }
 
     //修改或者添加计算方案
@@ -360,7 +349,7 @@ public class DbRubberApi {
 
         RebberModelModel model = getModelById(scheme.model_id);
 
-        int newId = new Long(setScheme(0, tag, name, name_display, scheme.related_model, model.name_display, scheme.related_block, debug_args)).intValue();
+        int newId = (int)setScheme(0, tag, name, name_display, scheme.related_model, model.name_display, scheme.related_block, debug_args);
 
         if (!TextUtils.isEmpty(scheme.event)) {
             updateSchemeEvent(newId, scheme.event);
@@ -422,16 +411,14 @@ public class DbRubberApi {
     public static DataList getSchemeNodeDataBySchemeId(int scheme_id) throws SQLException {
         return db().table("rubber_scheme_node")
                 .where("scheme_id = ?", scheme_id)
-                .select("*")
-                .getDataList();
+                .selectDataList("*");
     }
 
     //根据scheme_id 获取 计算方案规则结合(DataItem)
     public static DataList getSchemeRulesDataBySchemeId(int scheme_id) throws SQLException {
         return db().table("rubber_scheme_rule")
                 .where("scheme_id = ?", scheme_id)
-                .select("*")
-                .getDataList();
+                .selectDataList("*");
     }
 
     //根据方案id获取单条方案对象
@@ -439,8 +426,7 @@ public class DbRubberApi {
         return db().table("rubber_scheme")
                 .where("scheme_id = ?", scheme_id)
                 .limit(1)
-                .select("*")
-                .getItem(RebberSchemeModel.class);
+                .selectItem("*", RebberSchemeModel.class);
     }
 
     //根据field_id获取数据模型字段
@@ -451,8 +437,7 @@ public class DbRubberApi {
 
         return db().table("rubber_model_field")
                 .where("field_id = ?", field_id)
-                .select("*")
-                .getItem(RebberModelFieldModel.class);
+                .selectItem("*", RebberModelFieldModel.class);
     }
 
     //新增或更新数据模型字段
@@ -493,7 +478,7 @@ public class DbRubberApi {
     public static boolean saveAsModel(String tag,int model_id, String name, String name_display, String debug_args, String init_expr, String related_db) throws SQLException {
 
         List<DataItem> fields = getModelFieldDataItemList(model_id).getRows();
-        int newId = new Long(setModel(0, tag, name, name_display, init_expr, debug_args, related_db)).intValue();
+        int newId = (int)setModel(0, tag, name, name_display, init_expr, debug_args, related_db);
 
         for (DataItem m : fields) {
             m.remove("field_id");
@@ -512,24 +497,21 @@ public class DbRubberApi {
     public static long getModelFieldCount(int model_id) throws SQLException {
         return db().table("rubber_model_field")
                 .where("model_id = ?", model_id)
-                .select("count(*)")
-                .getCount();
+                .selectCount();
     }
 
     //根据模型id获取模型字段结合
     public static List<RebberModelFieldModel> getModelFieldListByModelId(int model_id) throws SQLException {
         return db().table("rubber_model_field")
                 .where("model_id = ?", model_id)
-                .select("*")
-                .getList(RebberModelFieldModel.class);
+                .selectList("*", RebberModelFieldModel.class);
     }
 
 
     public static DataList getModelFieldDataItemList(int model_id) throws SQLException {
         return db().table("rubber_model_field")
                 .where("model_id = ?", model_id)
-                .select("*")
-                .getDataList();
+                .selectDataList("*");
     }
 
     //删除模型字段
@@ -557,16 +539,14 @@ public class DbRubberApi {
                     }
                 })
                 .orderBy("`sort` ASC,rule_id ASC")
-                .select("*")
-                .getList(RebberSchemeRuleModel.class);
+                .selectList("*", RebberSchemeRuleModel.class);
     }
 
     //根据计算方案id获取规则列表
     public static List<RebberSchemeRuleModel> getSchemeRulesSchemeId(int scheme_id) throws SQLException {
         return db().table("rubber_scheme_rule")
                 .where("scheme_id = ?", scheme_id)
-                .select("*")
-                .getList(RebberSchemeRuleModel.class);
+                .selectList("*", RebberSchemeRuleModel.class);
     }
 
     //获取单条规则明细
@@ -575,16 +555,16 @@ public class DbRubberApi {
             return new RebberSchemeRuleModel();
         }
 
-        return db().table("rubber_scheme_rule").where("rule_id=?", rule_id)
-                .select("*")
-                .getItem(RebberSchemeRuleModel.class);
+        return db().table("rubber_scheme_rule")
+                .where("rule_id=?", rule_id)
+                .selectItem("*", RebberSchemeRuleModel.class);
     }
 
     //通过规则编号列表获取规则列表
     public static List<RebberSchemeRuleModel> getSchemeRuleByRuleIds(List<Integer> rule_ids) throws SQLException {
-        return db().table("rubber_scheme_rule").where("rule_id in (?...)", rule_ids)
-                .select("*")
-                .getList(RebberSchemeRuleModel.class);
+        return db().table("rubber_scheme_rule")
+                .where("rule_id in (?...)", rule_ids)
+                .selectList("*", RebberSchemeRuleModel.class);
     }
 
     //更新计算方案启动的规则数量
@@ -594,8 +574,7 @@ public class DbRubberApi {
         long count = db().table("rubber_scheme_rule")
                 .where("scheme_id = ?", scheme_id)
                 .and("is_enabled = ?", 1)
-                .select("count(*) counts")
-                .getValue(0L);
+                .selectCount();
 
 
         //更新记录数
@@ -667,8 +646,7 @@ public class DbRubberApi {
     public static RebberSchemeNodeDesignModel getSchemeNodeDesign(int scheme_id) throws SQLException {
         return db().table("rubber_scheme_node_design")
                 .where("scheme_id = ?", scheme_id)
-                .select("*")
-                .getItem(RebberSchemeNodeDesignModel.class);
+                .selectItem("*", RebberSchemeNodeDesignModel.class);
     }
 
     //根据node_id获取节点
@@ -676,8 +654,7 @@ public class DbRubberApi {
         return db().table("rubber_scheme_node")
                 .where("node_key = ?", node_key)
                 .and("scheme_id = ?", scheme_id)
-                .select("*")
-                .getItem(RebberSchemeNodeModel.class);
+                .selectItem("*", RebberSchemeNodeModel.class);
     }
 
     //获取除指定参与人员外的所有参与人员集合
@@ -689,8 +666,7 @@ public class DbRubberApi {
                         tb.and("actor <> ?", actor);
                     }
                 })
-                .select("*")
-                .getList(RebberActorModel.class);
+                .selectList("*", RebberActorModel.class);
     }
 
     /*public static JSONObject schemeNodeDeal(String node_key,int node_type) throws SQLException{
@@ -714,8 +690,9 @@ public class DbRubberApi {
     }*/
 
     public static RebberActorModel getActorModel(Integer actor_id) throws SQLException {
-        return db().table("rubber_actor").where("actor_id=?", actor_id).select("*")
-                .getItem(RebberActorModel.class);
+        return db().table("rubber_actor")
+                .where("actor_id=?", actor_id)
+                .selectItem("*", RebberActorModel.class);
     }
 
     //保存计算方案流程详情
@@ -749,8 +726,7 @@ public class DbRubberApi {
 
         return db().table("rubber_model")
                 .where("tag = ? and name = ?", tag, name)
-                .select("*")
-                .getItem(RebberModelModel.class);
+                .selectItem("*", RebberModelModel.class);
     }
 
 
@@ -759,8 +735,7 @@ public class DbRubberApi {
         return db().table("rubber_scheme")
                 .where("is_enabled = 1")
                 .orderBy("tag ASC,name ASC")
-                .select("*")
-                .getList(RebberSchemeModel.class);
+                .selectList("*", RebberSchemeModel.class);
     }
 
 
@@ -857,8 +832,8 @@ public class DbRubberApi {
     public static List<RebberActorModel> getActorList(RebberSchemeNodeModel node) throws SQLException {
         List<RebberActorModel> list = new ArrayList<>();
         List<RebberActorModel> actors = db().table("rubber_actor")
-                .select("*")
-                .getList(RebberActorModel.class);
+                .selectList("*", RebberActorModel.class);
+
         if (!TextUtils.isEmpty(node.actor_display)) {
             list = actors;
         } else {
@@ -995,8 +970,7 @@ public class DbRubberApi {
     public static List<RebberSchemeNodeModel> getSchemeNodeBySchemeId(int scheme_id) throws SQLException {
         return db().table("rubber_scheme_node")
                 .where("scheme_id = ?", scheme_id)
-                .select("*")
-                .getList(RebberSchemeNodeModel.class);
+                .selectList("*", RebberSchemeNodeModel.class);
     }
 
     //检查开始结束节点数量是否正确
@@ -1213,8 +1187,7 @@ public class DbRubberApi {
     public static RebberBlockModel getBlockById(int block_id) throws SQLException {
         return db().table("rubber_block")
                 .where("block_id = ?", block_id)
-                .select("*")
-                .getItem(RebberBlockModel.class);
+                .selectItem("*", RebberBlockModel.class);
     }
 
     public static List<RebberBlockModel> getBlockByIds(String ids) throws SQLException {
@@ -1225,8 +1198,7 @@ public class DbRubberApi {
 
         return db().table("rubber_block")
                 .whereIn("block_id", list)
-                .select("*")
-                .getList(RebberBlockModel.class);
+                .selectList("*", RebberBlockModel.class);
     }
 
     //获取数据block的tag集合
@@ -1234,8 +1206,7 @@ public class DbRubberApi {
         return db().table("rubber_block")
                 .groupBy("tag")
                 .orderByAsc("tag")
-                .select("tag,count(*) counts")
-                .getList(TagCountsModel.class);
+                .selectList("tag,count(*) counts", TagCountsModel.class);
     }
 
     //根据tag获取数据块集合
@@ -1243,8 +1214,7 @@ public class DbRubberApi {
         return db().table("rubber_block")
                 .where("tag = ?", tag)
                 .orderBy("name ASC")
-                .select("*")
-                .getList(RebberBlockModel.class);
+                .selectList("*", RebberBlockModel.class);
     }
 
     //新增或修改数据块

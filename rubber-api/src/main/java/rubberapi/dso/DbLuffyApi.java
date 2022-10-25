@@ -16,15 +16,13 @@ public class DbLuffyApi {
     public static AFileModel fileGet(String path) throws Exception {
         return db().table("luffy_file")
                 .where("path=?", path)
-                .select("*")
-                .getItem(AFileModel.class);
+                .selectItem("*", AFileModel.class);
     }
 
     public static AFileModel fileGet(int file_id) throws Exception {
         return db().table("luffy_file")
                 .whereEq("file_id", file_id)
-                .select("*")
-                .getItem(AFileModel.class);
+                .selectItem("*", AFileModel.class);
     }
 
     public static List<AFileModel> fileGetPaths(String tag, String label, boolean isCache) throws Exception {
@@ -36,9 +34,8 @@ public class DbLuffyApi {
                 .where("1=1")
                 .andIf(TextUtils.isEmpty(tag) == false, "tag=?", tag)
                 .andIf(TextUtils.isEmpty(label) == false, "label=?", label)
-                .select("path, note")
                 .caching(Config.cache_file)
                 .usingCache(isCache)
-                .getList(AFileModel.class);
+                .selectList("path, note", AFileModel.class);
     }
 }

@@ -25,8 +25,7 @@ public class DbLuffyApi {
         return db().table("luffy_file").where("file_type=?", type.code)
                 .groupBy("tag")
                 .orderByAsc("tag")
-                .select("tag,count(*) counts")
-                .getList(TagCountsModel.class);
+                .selectList("tag,count(*) counts", TagCountsModel.class);
     }
 
     private static String list_sels = "file_id,tag,label,path,`rank`,note,is_staticize,is_editable,is_disabled,is_exclude,link_to,edit_mode,content_type,update_fulltime,plan_state,plan_begin_time,plan_last_time,plan_last_timespan,plan_interval,plan_max,plan_count,use_whitelist";
@@ -74,15 +73,13 @@ public class DbLuffyApi {
         }
 
         return qr.orderByAsc("path")
-                .select(list_sels)
-                .getList(LuffyFileModel.class);
+                .selectList(list_sels, LuffyFileModel.class);
     }
 
     public static LuffyFileModel getFile(int file_id) throws SQLException {
         return db().table("luffy_file")
                 .where("file_id=?", file_id)
-                .select("*")
-                .getItem(LuffyFileModel.class);
+                .selectItem("*", LuffyFileModel.class);
     }
 
     public static int delFile(int file_id) throws SQLException {
@@ -144,8 +141,7 @@ public class DbLuffyApi {
         return db().table("luffy_file")
                 .whereIn("file_id", list)
                 .andEq("file_type", type.code)
-                .select("*")
-                .getList(LuffyFileModel.class);
+                .selectList("*", LuffyFileModel.class);
     }
 
     //批量导入

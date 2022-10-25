@@ -22,9 +22,8 @@ public final class DbApi {
 
 
     public static ModelModel getModel(String tag, String name) throws SQLException {
-        IQuery query = db().table("rubber_model")
-                .where("tag=? AND name=?", tag, name)
-                .select("*");
+        DbTableQuery query = db().table("rubber_model")
+                .where("tag=? AND name=?", tag, name);
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
@@ -32,8 +31,7 @@ public final class DbApi {
                     .cacheTag("model:" + tag + "/" + name);
         }
 
-        return query.getItem(ModelModel.class);
-
+        return query.selectItem("*", ModelModel.class);
     }
 
     protected static ModelModel getModelByTagName(String model_tagName) throws Exception{
@@ -57,13 +55,12 @@ public final class DbApi {
                                 .usingCache(60 * 5);
                     }
                 })
-                .exists();
+                .selectExists();
     }
 
     public static List<ModelFieldModel> getModelFields(int model_id, String model_tag, String model_name) throws SQLException {
-        IQuery query = db().table("rubber_model_field")
-                .where("model_id=?", model_id)
-                .select("*");
+        DbTableQuery query = db().table("rubber_model_field")
+                .where("model_id=?", model_id);
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
@@ -71,20 +68,19 @@ public final class DbApi {
                     .cacheTag("model:" + model_tag + "/" + model_name);
         }
 
-        return query.getList(ModelFieldModel.class);
+        return query.selectList("*", ModelFieldModel.class);
     }
 
     public static SchemeModel getScheme(String tag, String name) throws SQLException {
-        IQuery query = db().table("rubber_scheme")
-                .where("tag=? AND name=?", tag, name)
-                .select("*");
+        DbTableQuery query = db().table("rubber_scheme")
+                .where("tag=? AND name=?", tag, name);
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
                     .usingCache(60 * 5)
                     .cacheTag("scheme:" + tag + "/" + name);
         }
-        return query.getItem(SchemeModel.class);
+        return query.selectItem("*", SchemeModel.class);
     }
 
     //尝试获取计算方案信息
@@ -100,9 +96,8 @@ public final class DbApi {
     }
 
     public static List<SchemeModel> getSchemeByTag(String tag) throws SQLException {
-        IQuery query = db().table("rubber_scheme")
-                .where("tag=?", tag)
-                .select("*");
+        DbTableQuery query = db().table("rubber_scheme")
+                .where("tag=?", tag);
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
@@ -110,13 +105,12 @@ public final class DbApi {
                     .cacheTag("scheme:" + tag);
         }
 
-        return query.getList(SchemeModel.class);
+        return query.selectList("*", SchemeModel.class);
     }
 
     public static List<SchemeNodeModel> getSchemeNodes(int scheme_id, String scheme_tag, String scheme_name) throws SQLException {
-        IQuery query = db().table("rubber_scheme_node")
-                .where("scheme_id=?", scheme_id)
-                .select("*");
+        DbTableQuery query = db().table("rubber_scheme_node")
+                .where("scheme_id=?", scheme_id);
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
@@ -124,14 +118,13 @@ public final class DbApi {
                     .cacheTag("scheme:" + scheme_tag + "/" + scheme_name);
         }
 
-        return query.getList(SchemeNodeModel.class);
+        return query.selectList("*", SchemeNodeModel.class);
     }
 
     public static List<SchemeRuleModel> getSchemeRules(int scheme_id, String scheme_tag, String scheme_name) throws SQLException {
-        IQuery query = db().table("rubber_scheme_rule")
+        DbTableQuery query = db().table("rubber_scheme_rule")
                 .where("scheme_id=? AND is_enabled=1", scheme_id)
-                .orderBy("`sort` ASC,rule_id ASC")
-                .select("*");
+                .orderBy("`sort` ASC,rule_id ASC");
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
@@ -139,7 +132,7 @@ public final class DbApi {
                     .cacheTag("scheme:" + scheme_tag + "/" + scheme_name);
         }
 
-        return query.getList(SchemeRuleModel.class);
+        return query.selectList("*", SchemeRuleModel.class);
     }
     /* //先留着别删
     public static SchemeRuleModel getSchemeRule(int rule_id) throws SQLException {
@@ -159,9 +152,8 @@ public final class DbApi {
     //======================
     //D-Block
     public static List<BlockModel> getBlockByTag(String tag) throws SQLException {
-        IQuery query = db().table("rubber_block")
-                .where("tag=? AND is_enabled=1", tag)
-                .select("*");
+        DbTableQuery query = db().table("rubber_block")
+                .where("tag=? AND is_enabled=1", tag);
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
@@ -169,14 +161,12 @@ public final class DbApi {
                     .cacheTag("block:" + tag + "/*");
         }
 
-        return query.getList(BlockModel.class);
-
+        return query.selectList("*", BlockModel.class);
     }
 
     public static BlockModel getBlock(String tag, String name) throws SQLException {
-        IQuery query = db().table("rubber_block")
-                .where("tag=? AND name=?", tag, name)
-                .select("*");
+        DbTableQuery query = db().table("rubber_block")
+                .where("tag=? AND name=?", tag, name);
 
         if (RcConfig.is_debug == false) {
             query.caching(RcConfig.inner_cache)
@@ -184,7 +174,7 @@ public final class DbApi {
                     .cacheTag("block:" + tag + "/" + name);
         }
 
-        return query.getItem(BlockModel.class);
+        return query.selectItem("*", BlockModel.class);
     }
 
     public static BlockModel getBlockByTagName(String block_tagName) throws Exception{
