@@ -2,9 +2,9 @@ package rubberadmin.dso.db;
 
 import org.noear.water.dso.NoticeUtils;
 import org.noear.water.utils.TextUtils;
-import org.noear.weed.DataItem;
-import org.noear.weed.DbContext;
-import org.noear.weed.DbTableQuery;
+import org.noear.wood.DataItem;
+import org.noear.wood.DbContext;
+import org.noear.wood.DbTableQuery;
 import rubberadmin.Config;
 import rubberadmin.models.water_paas.LuffyFileModel;
 import rubberadmin.models.water_paas.LuffyFileType;

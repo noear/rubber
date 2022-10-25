@@ -4,9 +4,9 @@ import org.noear.rubber.models.*;
 import org.noear.snack.ONode;
 import org.noear.water.WW;
 import org.noear.water.utils.Datetime;
-import org.noear.weed.DbContext;
-import org.noear.weed.DbTableQuery;
-import org.noear.weed.IQuery;
+import org.noear.wood.DbContext;
+import org.noear.wood.DbTableQuery;
+import org.noear.wood.IQuery;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -32,7 +32,7 @@ public final class DbApi {
                     .cacheTag("model:" + tag + "/" + name);
         }
 
-        return query.getItem(new ModelModel());
+        return query.getItem(ModelModel.class);
 
     }
 
@@ -71,7 +71,7 @@ public final class DbApi {
                     .cacheTag("model:" + model_tag + "/" + model_name);
         }
 
-        return query.getList(new ModelFieldModel());
+        return query.getList(ModelFieldModel.class);
     }
 
     public static SchemeModel getScheme(String tag, String name) throws SQLException {
@@ -84,7 +84,7 @@ public final class DbApi {
                     .usingCache(60 * 5)
                     .cacheTag("scheme:" + tag + "/" + name);
         }
-        return query.getItem(new SchemeModel());
+        return query.getItem(SchemeModel.class);
     }
 
     //尝试获取计算方案信息
@@ -110,7 +110,7 @@ public final class DbApi {
                     .cacheTag("scheme:" + tag);
         }
 
-        return query.getList(new SchemeModel());
+        return query.getList(SchemeModel.class);
     }
 
     public static List<SchemeNodeModel> getSchemeNodes(int scheme_id, String scheme_tag, String scheme_name) throws SQLException {
@@ -124,7 +124,7 @@ public final class DbApi {
                     .cacheTag("scheme:" + scheme_tag + "/" + scheme_name);
         }
 
-        return query.getList(new SchemeNodeModel());
+        return query.getList(SchemeNodeModel.class);
     }
 
     public static List<SchemeRuleModel> getSchemeRules(int scheme_id, String scheme_tag, String scheme_name) throws SQLException {
@@ -139,7 +139,7 @@ public final class DbApi {
                     .cacheTag("scheme:" + scheme_tag + "/" + scheme_name);
         }
 
-        return query.getList(new SchemeRuleModel());
+        return query.getList(SchemeRuleModel.class);
     }
     /* //先留着别删
     public static SchemeRuleModel getSchemeRule(int rule_id) throws SQLException {
@@ -169,7 +169,7 @@ public final class DbApi {
                     .cacheTag("block:" + tag + "/*");
         }
 
-        return query.getList(new BlockModel());
+        return query.getList(BlockModel.class);
 
     }
 
@@ -184,7 +184,7 @@ public final class DbApi {
                     .cacheTag("block:" + tag + "/" + name);
         }
 
-        return query.getItem(new BlockModel());
+        return query.getItem(BlockModel.class);
     }
 
     public static BlockModel getBlockByTagName(String block_tagName) throws Exception{

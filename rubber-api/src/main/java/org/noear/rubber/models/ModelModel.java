@@ -1,8 +1,8 @@
 package org.noear.rubber.models;
 
 import org.noear.rubber.DbApi;
-import org.noear.weed.GetHandlerEx;
-import org.noear.weed.IBinder;
+import org.noear.wood.GetHandlerEx;
+import org.noear.wood.IBinder;
 
 import java.sql.SQLException;
 import java.util.Date;

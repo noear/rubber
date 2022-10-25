@@ -8,8 +8,8 @@ import org.noear.water.WaterClient;
 import org.noear.water.WW;
 import org.noear.water.model.ConfigM;
 import org.noear.water.utils.DsCacheUtils;
-import org.noear.weed.DbContext;
-import org.noear.weed.WeedConfig;
+import org.noear.wood.DbContext;
+import org.noear.wood.WoodConfig;
 import rubberadmin.dso.SessionPerms;
 import rubberadmin.dso.auth.AuthProcessorImpl;
 
@@ -40,8 +40,8 @@ public class Config {
     //获取一个数据库配置
 
     static {
-        WeedConfig.isDebug = false;
-        WeedConfig.isUsingValueExpression = false;
+        WoodConfig.isDebug = false;
+        WoodConfig.isUsingValueExpression = false;
 
         water = DsCacheUtils.getDb(cfg(WW.water).value, true);
         water_paas = DsCacheUtils.getDb(cfg(WW.water_paas).value, true, water);

@@ -1,7 +1,7 @@
 package rubberadmin.models.water_paas;
 
 import lombok.Getter;
-import org.noear.weed.*;
+import org.noear.wood.*;
 
 import java.util.*;
 

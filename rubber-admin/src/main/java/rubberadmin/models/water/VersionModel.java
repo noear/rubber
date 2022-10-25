@@ -3,8 +3,8 @@ package rubberadmin.models.water;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.noear.weed.GetHandlerEx;
-import org.noear.weed.IBinder;
+import org.noear.wood.GetHandlerEx;
+import org.noear.wood.IBinder;
 
 import java.util.Date;
 

@@ -1,6 +1,6 @@
 package rubberadmin.dso.db;
 
-import org.noear.weed.DbContext;
+import org.noear.wood.DbContext;
 import rubberadmin.Config;
 import rubberadmin.models.water_paas.CodeQueryModel;
 import rubberadmin.models.water_paas.RebberBlockModel;
@@ -42,7 +42,7 @@ public class DbRubberQueryApi {
                 .where("init_expr like ?", "%" + code + "%")
                 .limit(20)
                 .select("*")
-                .getList(new RebberModelModel());
+                .getList(RebberModelModel.class);
         for (RebberModelModel m:list) {
             CodeQueryModel query = new CodeQueryModel();
             query.code_type = 0;
@@ -63,7 +63,7 @@ public class DbRubberQueryApi {
                 .where("f.expr like ?", "%" + code + "%")
                 .limit(20)
                 .select("f.*,m.tag")
-                .getList(new RebberModelFieldModel());
+                .getList(RebberModelFieldModel.class);
 
         for (RebberModelFieldModel m : list) {
             CodeQueryModel query = new CodeQueryModel();
@@ -86,7 +86,7 @@ public class DbRubberQueryApi {
                 .where("event like ?", "%" + code + "%")
                 .limit(20)
                 .select("*")
-                .getList(new RebberSchemeModel());
+                .getList(RebberSchemeModel.class);
         for (RebberSchemeModel m:list) {
             CodeQueryModel query = new CodeQueryModel();
             query.code_type = 2;
@@ -106,7 +106,8 @@ public class DbRubberQueryApi {
                 .where("app_expr like ?", "%" + code + "%")
                 .limit(20)
                 .select("*")
-                .getList(new RebberBlockModel());
+                .getList(RebberBlockModel.class);
+
         for (RebberBlockModel m:list) {
             CodeQueryModel query = new CodeQueryModel();
             query.code_type = 3;

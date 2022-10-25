@@ -1,7 +1,7 @@
 package org.noear.rubber.models;
 
-import org.noear.weed.GetHandlerEx;
-import org.noear.weed.IBinder;
+import org.noear.wood.GetHandlerEx;
+import org.noear.wood.IBinder;
 
 public class PaasFunModel implements IBinder {
     public String tag;

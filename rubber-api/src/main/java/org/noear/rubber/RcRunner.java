@@ -4,7 +4,7 @@ import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import org.noear.snack.ONode;
 import org.noear.luffy.executor.ExecutorFactory;
 import org.noear.water.utils.TextUtils;
-import org.noear.weed.ext.Fun0Ex;
+import org.noear.wood.ext.Fun0Ex;
 import org.noear.rubber.models.BlockModel;
 import org.noear.rubber.workflow.*;
 import org.noear.rubber.models.ModelModel;

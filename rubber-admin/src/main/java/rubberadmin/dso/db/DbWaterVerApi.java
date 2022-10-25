@@ -6,7 +6,7 @@ import org.noear.solon.core.handle.Context;
 import org.noear.water.utils.Datetime;
 import org.noear.water.utils.EncryptUtils;
 import org.noear.water.utils.TextUtils;
-import org.noear.weed.DbContext;
+import org.noear.wood.DbContext;
 import rubberadmin.Config;
 import rubberadmin.dso.CacheUtil;
 import rubberadmin.dso.Session;
@@ -98,7 +98,7 @@ public class DbWaterVerApi {
                 .orderBy("commit_id DESC")
                 .limit(10)
                 .select("*")
-                .getList(new VersionModel());
+                .getList(VersionModel.class);
     }
 
     public static VersionModel getVersionByCommit(int commit_id) throws SQLException {
@@ -108,7 +108,7 @@ public class DbWaterVerApi {
                 .limit(1)
                 .select("*")
                 .caching(CacheUtil.data)
-                .getItem(new VersionModel());
+                .getItem(VersionModel.class);
     }
 
     /**

@@ -1,7 +1,7 @@
 package org.noear.rubber;
 
-import org.noear.weed.DataList;
-import org.noear.weed.DbContext;
+import org.noear.wood.DataList;
+import org.noear.wood.DbContext;
 
 public final class RubberQuery {
     protected RubberQuery(DbContext db, String sql){
