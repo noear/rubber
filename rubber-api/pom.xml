@@ -63,9 +63,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>3.12.6</version>
+            <groupId>org.noear</groupId>
+            <artifactId>mongox</artifactId>
+            <version>${mongox.ver}</version>
         </dependency>
 
         <dependency>
@@ -81,15 +81,9 @@
         </dependency>
 
         <dependency>
-            <groupId>net.spy</groupId>
-            <artifactId>spymemcached</artifactId>
-            <version>2.12.3</version>
-        </dependency>
-
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.49</version>
+            <version>${mysql.ver}</version>
         </dependency>
 
         <dependency>
@@ -107,7 +101,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
             <scope>provided</scope>
         </dependency>
 
