@@ -19,11 +19,6 @@
     <description>Java project for water</description>
 
     <dependencies>
-        <dependency>
-            <groupId>org.noear</groupId>
-            <artifactId>water.server</artifactId>
-            <version>${water.ver}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
@@ -33,6 +28,12 @@
         <dependency>
             <groupId>org.noear</groupId>
             <artifactId>solon.config.yaml</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.noear</groupId>
+            <artifactId>water.server</artifactId>
+            <version>${water.ver}</version>
         </dependency>
 
         <dependency>
