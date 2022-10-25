@@ -359,7 +359,7 @@ public class RubberSchemeController extends BaseController {
 
         List<Integer> ruleids = new ArrayList<>();
         for (String rule_key: exprResult.keySet()) {
-            ruleids.add(new Integer(rule_key));
+            ruleids.add(Integer.parseInt(rule_key));
         }
         List<RebberSchemeRuleModel> schemeRuleModelList = DbRubberApi.getSchemeRuleByRuleIds(ruleids);
 
@@ -390,7 +390,7 @@ public class RubberSchemeController extends BaseController {
                     }
                 }
                 Integer is_enabled = jsonObject.getInteger("is_enabled");
-                result = DbRubberApi.setSchemeRule(new Integer(rule_key), rule.scheme_id, rule.name_display,rule.advice, rule.score, rule.sort, JSON.toJSONString(exprSource), expr_display,is_enabled);
+                result = DbRubberApi.setSchemeRule(Integer.parseInt(rule_key), rule.scheme_id, rule.name_display,rule.advice, rule.score, rule.sort, JSON.toJSONString(exprSource), expr_display,is_enabled);
 
                 DbRubberApi.updSchemeRuleCount(rule.scheme_id);
             }

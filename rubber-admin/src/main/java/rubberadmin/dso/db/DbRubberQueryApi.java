@@ -18,7 +18,7 @@ public class DbRubberQueryApi {
     }
 
     //代码片段查询
-    public static List<CodeQueryModel>  codeQuery(int code_type, String code) throws SQLException{
+    public static List<CodeQueryModel> codeQuery(int code_type, String code) throws SQLException {
         List<CodeQueryModel> list = new ArrayList<>();
         if (code_type == 0) {
             //模型构造代码
@@ -29,21 +29,21 @@ public class DbRubberQueryApi {
         } else if (code_type == 2) {
             //计算事件代码
             return querySchemeEvent(code);
-        }else if (code_type == 3) {
+        } else if (code_type == 3) {
             //计算事件代码
             return queryBlockScan(code);
         }
         return list;
     }
 
-    public static List<CodeQueryModel> queryModelInit(String code) throws SQLException{
+    public static List<CodeQueryModel> queryModelInit(String code) throws SQLException {
         List<CodeQueryModel> result = new ArrayList<>();
         List<RebberModelModel> list = db().table("rubber_model")
                 .where("init_expr like ?", "%" + code + "%")
                 .limit(20)
-                .select("*")
-                .getList(RebberModelModel.class);
-        for (RebberModelModel m:list) {
+                .selectList("*", RebberModelModel.class);
+
+        for (RebberModelModel m : list) {
             CodeQueryModel query = new CodeQueryModel();
             query.code_type = 0;
             query.name = m.name;
@@ -62,8 +62,7 @@ public class DbRubberQueryApi {
                 .innerJoin("rubber_model m").on("f.model_id = m.model_id")
                 .where("f.expr like ?", "%" + code + "%")
                 .limit(20)
-                .select("f.*,m.tag")
-                .getList(RebberModelFieldModel.class);
+                .selectList("f.*,m.tag", RebberModelFieldModel.class);
 
         for (RebberModelFieldModel m : list) {
             CodeQueryModel query = new CodeQueryModel();
@@ -80,14 +79,14 @@ public class DbRubberQueryApi {
         return result;
     }
 
-    public static List<CodeQueryModel> querySchemeEvent(String code) throws SQLException{
+    public static List<CodeQueryModel> querySchemeEvent(String code) throws SQLException {
         List<CodeQueryModel> result = new ArrayList<>();
         List<RebberSchemeModel> list = db().table("rubber_scheme")
                 .where("event like ?", "%" + code + "%")
                 .limit(20)
-                .select("*")
-                .getList(RebberSchemeModel.class);
-        for (RebberSchemeModel m:list) {
+                .selectList("*", RebberSchemeModel.class);
+
+        for (RebberSchemeModel m : list) {
             CodeQueryModel query = new CodeQueryModel();
             query.code_type = 2;
             query.name = m.name;
@@ -100,15 +99,14 @@ public class DbRubberQueryApi {
         return result;
     }
 
-    public static List<CodeQueryModel> queryBlockScan(String code) throws SQLException{
+    public static List<CodeQueryModel> queryBlockScan(String code) throws SQLException {
         List<CodeQueryModel> result = new ArrayList<>();
         List<RebberBlockModel> list = db().table("rubber_block")
                 .where("app_expr like ?", "%" + code + "%")
                 .limit(20)
-                .select("*")
-                .getList(RebberBlockModel.class);
+                .selectList("*", RebberBlockModel.class);
 
-        for (RebberBlockModel m:list) {
+        for (RebberBlockModel m : list) {
             CodeQueryModel query = new CodeQueryModel();
             query.code_type = 3;
             query.name = m.name;
@@ -123,30 +121,26 @@ public class DbRubberQueryApi {
 
 
     //代码查询，显示代码
-    public static String queryCode(int code_type,int id) throws SQLException{
+    public static String queryCode(int code_type, int id) throws SQLException {
         String code = "";
+
         if (code_type == 0) {
             code = db().table("rubber_model")
                     .where("model_id = ?", id)
-                    .select("init_expr")
-                    .getValue("");
+                    .selectValue("init_expr", "");
         } else if (code_type == 1) {
             code = db().table("rubber_model_field")
                     .where("field_id = ?", id)
-                    .select("expr")
-                    .getValue("");
+                    .selectValue("expr", "");
         } else if (code_type == 2) {
             code = db().table("rubber_scheme")
                     .where("scheme_id = ?", id)
-                    .select("event")
-                    .getValue("");
-        }else if (code_type == 3) {
+                    .selectValue("event", "");
+        } else if (code_type == 3) {
             code = db().table("rubber_block")
                     .where("block_id = ?", id)
-                    .select("app_expr")
-                    .getValue("");
+                    .selectValue("app_expr", "");
         }
         return code;
     }
-
 }

@@ -21,7 +21,7 @@ public class Rubber {
         RcConfig.inner_cache = cache;
         RcRunner.tryInit();
 
-        Solon.global().sharedAdd("RubberUtil", new RubberUtil());
+        Solon.app().sharedAdd("RubberUtil", new RubberUtil());
     }
 
     //

@@ -1297,8 +1297,7 @@ public class DbRubberApi {
                             }
                         })
                         .limit(100)
-                        .select(cols_str)
-                        .getDataList();
+                        .selectDataList(cols_str);
             } else {
 
                 //查询引用的nosql-db
@@ -1307,7 +1306,7 @@ public class DbRubberApi {
                 String key = "block_" + block.block_id;
                 String search = (fval == null ? "*" : "*" + fval + "*");
 
-                List<Map.Entry<String, String>> list = cfg.getRd(tb).open1((rs) -> rs.key(key).hashScan(search, 100));
+                List<Map.Entry<String, String>> list = cfg.getRd(tb).openAndGet((rs) -> rs.key(key).hashScan(search, 100));
                 DataList dataList = new DataList();
                 if (list != null) {
 
@@ -1349,13 +1348,12 @@ public class DbRubberApi {
                 return cfg.getDb()
                         .table(block.related_tb)
                         .where(cols_key + "= ?", item_key)
-                        .select(cols_str)
-                        .getDataItem();
+                        .selectDataItem(cols_str);
             } else {
                 int tb = Integer.parseInt(block.related_tb);
                 String key = "block_" + block.block_id;
 
-                String temp = cfg.getRd(tb).open1((rs) -> rs.key(key).hashGet(item_key));
+                String temp = cfg.getRd(tb).openAndGet((rs) -> rs.key(key).hashGet(item_key));
                 JSONObject obj = JSONObject.parseObject(temp);
                 DataItem item = new DataItem();
 
@@ -1397,7 +1395,7 @@ public class DbRubberApi {
                 int tb = Integer.parseInt(block.related_tb);
                 String key = "block_" + block.block_id;
 
-                cfg.getRd(tb).open0((rs) -> {
+                cfg.getRd(tb).open((rs) -> {
                     rs.key(key).hashDel(item_key);
                     rs.key(key).hashSet(data.getString(cols_key), data.toJSONString());
                 });
@@ -1420,7 +1418,7 @@ public class DbRubberApi {
                 }
                 tb.end();
             }
-        }).select("block_id,tag,name,name_display").getList(RebberBlockModel.class);
+        }).selectList("block_id,tag,name,name_display", RebberBlockModel.class);
     }
 
 
@@ -1432,8 +1430,7 @@ public class DbRubberApi {
     public static RebberLogRequestModel getLogReqById(long log_id) throws SQLException {
         return dbReq().table(WW.rubber_log_request)
                 .where("log_id = ?", log_id)
-                .select("*")
-                .getItem(RebberLogRequestModel.class);
+                .selectItem("*", RebberLogRequestModel.class);
     }
 
 
@@ -1442,8 +1439,7 @@ public class DbRubberApi {
         return dbReq().table(WW.rubber_log_request)
                 .groupBy("tag")
                 .orderByAsc("tag")
-                .select("tag,count(*) counts")
-                .getList(RebberModelModel.class);
+                .selectList("tag,count(*) counts", RebberModelModel.class);
     }
 
     //根据request_id获取model
@@ -1460,10 +1456,10 @@ public class DbRubberApi {
                         }
                     }
                 });
-        count.setCount(query.count());
+        count.setCount(query.selectCount());
+
         return query.orderBy("log_id DESC")
                 .limit(start, pageSize)
-                .select("*")
-                .getList(RebberLogRequestModel.class);
+                .selectList("*", RebberLogRequestModel.class);
     }
 }

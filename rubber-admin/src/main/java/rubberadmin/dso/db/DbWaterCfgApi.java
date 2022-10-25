@@ -26,9 +26,8 @@ public class DbWaterCfgApi {
                 .whereEq("tag", tag)
                 .andEq("key", name)
                 .limit(1)
-                .select("*")
                 .caching(CacheUtil.data).usingCache(cache)
-                .getItem(ConfigModel.class);
+                .selectItem("*", ConfigModel.class);
     }
 
     //====================================================
@@ -38,15 +37,13 @@ public class DbWaterCfgApi {
         return db().table("water_cfg_properties")
                 .whereEq("type", ConfigType.db)
                 .orderBy("`tag`,`key`")
-                .select("*")
-                .getList(ConfigModel.class);
+                .selectList("*", ConfigModel.class);
     }
 
     //获取type=10,11,12的配置（结构化数据库 + 非结构化数据库）
     public static List<ConfigModel> getDbConfigsEx() throws SQLException {
         return db().table("water_cfg_properties")
                 .where("type >=10 AND type<20")
-                .select("*")
-                .getList(ConfigModel.class);
+                .selectList("*", ConfigModel.class);
     }
 }
