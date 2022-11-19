@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.noear</groupId>
         <artifactId>solon-parent</artifactId>
-        <version>1.10.13</version>
+        <version>1.11.0</version>
         <relativePath />
     </parent>
 
@@ -28,7 +28,7 @@
         <esearchx.ver>1.0.15</esearchx.ver>
         <grit.ver>1.4.2</grit.ver>
 
-        <luffy.ver>1.4.0</luffy.ver>
+        <luffy.ver>1.4.1</luffy.ver>
 
         <mongox.ver>1.0.0</mongox.ver>
 
