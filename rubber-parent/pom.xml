@@ -6,7 +6,7 @@
 
     <groupId>org.noear</groupId>
     <artifactId>rubber-parent</artifactId>
-    <version>dev</version>
+    <version>1.2.0</version>
     <packaging>pom</packaging>
 
     <parent>
@@ -24,16 +24,16 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
 
-        <redisx.ver>1.4.8</redisx.ver>
-        <esearchx.ver>1.0.17</esearchx.ver>
-        <grit.ver>1.6.0</grit.ver>
+        <redisx.version>1.4.8</redisx.version>
+        <esearchx.version>1.0.17</esearchx.version>
+        <grit.version>1.6.0</grit.version>
 
-        <luffy.ver>1.6.4</luffy.ver>
+        <luffy.version>1.6.4</luffy.version>
 
-        <mongox.ver>1.0.2</mongox.ver>
+        <mongox.version>1.0.2</mongox.version>
 
-        <HikariCP.ver>4.0.3</HikariCP.ver>
+        <HikariCP.version>4.0.3</HikariCP.version>
 
-        <mysql.ver>5.1.49</mysql.ver>
+        <mysql.version>5.1.49</mysql.version>
     </properties>
 </project>

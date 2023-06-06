@@ -7,12 +7,11 @@
     <parent>
         <groupId>org.noear</groupId>
         <artifactId>rubber-parent</artifactId>
-        <version>dev</version>
+        <version>1.2.0</version>
         <relativePath>../rubber-parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>rubber-admin</artifactId>
-    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>${project.artifactId}</name>
@@ -64,37 +63,37 @@
         <dependency>
             <groupId>org.noear</groupId>
             <artifactId>grit.server</artifactId>
-            <version>${grit.ver}</version>
+            <version>${grit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
             <artifactId>grit-solon-plugin</artifactId>
-            <version>${grit.ver}</version>
+            <version>${grit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>${HikariCP.ver}</version>
+            <version>${HikariCP.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
             <artifactId>redisx</artifactId>
-            <version>${redisx.ver}</version>
+            <version>${redisx.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
             <artifactId>mongox</artifactId>
-            <version>${mongox.ver}</version>
+            <version>${mongox.version}</version>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>${mysql.ver}</version>
+            <version>${mysql.version}</version>
         </dependency>
 
         <dependency>
