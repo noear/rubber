@@ -198,7 +198,7 @@ public class RubberBlockController extends BaseController {
     @AuthPermissions(SessionPerms.admin)
     @Mapping("block/ajax/import")
     public ViewModel importDo(Context ctx, String tag, UploadedFile file) throws Exception {
-        String jsonD = IOUtils.toString(file.content);
+        String jsonD = IOUtils.toString(file.getContent());
         JsondEntity entity = JsondUtils.decode(jsonD);
 
         if(entity == null || "rubber_block".equals(entity.table) == false){

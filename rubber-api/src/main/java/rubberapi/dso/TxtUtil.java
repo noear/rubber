@@ -36,11 +36,11 @@ public class TxtUtil {
         sb.append("<table>");
 
         sb.append("<thead>");
-        if(dlist.getRowCount()>0){
+        if(dlist.getRowCount()>0) {
 
             sb.append("<tr>");
             DataItem item = dlist.getRow(0);
-            item.forEach((k,v)->{
+            item.keySet().forEach((k) -> {
                 sb.append("<td>");
                 sb.append(k);
                 sb.append("</td>");
@@ -52,12 +52,12 @@ public class TxtUtil {
         sb.append("<tbody>");
         for (DataItem item : dlist.getRows()) {
             sb.append("<tr>");
-            item.forEach((k,v)->{
+            item.values().forEach((v)->{
                 sb.append("<td>");
                 if(v == null){
                     sb.append("null");
                 }else{
-                    sb.append(v.toString());
+                    sb.append(v);
                 }
                 sb.append("</td>");//\t防止出现科学计数法
             });
@@ -78,7 +78,7 @@ public class TxtUtil {
 
         if(dlist.getRowCount()>0){
             DataItem item = dlist.getRow(0);
-            item.forEach((k,v)->{
+            item.keys().forEach((k)->{
                 sb.append("\"");
                 sb.append(k);
                 sb.append("\",");
@@ -87,7 +87,7 @@ public class TxtUtil {
         }
 
         for (DataItem item : dlist.getRows()) {
-            item.forEach((k,v)->{
+            item.values().forEach((v)->{
                 sb.append("\"");
                 if(v == null){
                     sb.append("null");

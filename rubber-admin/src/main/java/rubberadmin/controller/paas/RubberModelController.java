@@ -259,7 +259,7 @@ public class RubberModelController extends BaseController {
     @AuthPermissions(SessionPerms.admin)
     @Mapping("model/ajax/import")
     public ViewModel importDo(Context ctx, String tag, UploadedFile file) throws Exception {
-        String jsonD = IOUtils.toString(file.content);
+        String jsonD = IOUtils.toString(file.getContent());
         JsondEntity entity = JsondUtils.decode(jsonD);
 
         if (entity == null || "rubber_model".equals(entity.table) == false) {

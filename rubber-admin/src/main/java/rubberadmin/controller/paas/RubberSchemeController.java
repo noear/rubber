@@ -543,7 +543,7 @@ public class RubberSchemeController extends BaseController {
     @AuthPermissions(SessionPerms.admin)
     @Mapping("scheme/ajax/import")
     public ViewModel importDo(Context ctx, String tag, UploadedFile file) throws Exception {
-        String jsonD = IOUtils.toString(file.content);
+        String jsonD = IOUtils.toString(file.getContent());
         JsondEntity entity = JsondUtils.decode(jsonD);
 
         if(entity == null || "rubber_scheme".equals(entity.table) == false){
