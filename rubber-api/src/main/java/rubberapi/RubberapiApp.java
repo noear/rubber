@@ -26,8 +26,6 @@ public class RubberapiApp {
         Solon.start(RubberapiApp.class, args, (x) -> {
             Config.tryInit();
 
-            x.enableErrorAutoprint(false);
-
             x.sharedAdd("cache", Config.cache_data);
             x.sharedAdd("XFun", JtFun.g);
             x.sharedAdd("XMsg", JtMsg.g);
