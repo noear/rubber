@@ -1,7 +1,7 @@
 package rubberadmin;
 
 import org.noear.solon.Solon;
-import org.noear.solon.cloud.utils.http.PreheatUtils;
+import org.noear.solon.net.http.PreheatUtils;
 import org.noear.water.WW;
 import rubberadmin.dso.InitPlugin;
 

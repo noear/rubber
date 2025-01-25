@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
 import org.noear.snack.ONode;
 import org.noear.solon.Utils;
+import org.noear.solon.core.util.ClassUtil;
 import org.noear.water.WW;
 import org.noear.water.utils.Base64Utils;
 import org.noear.water.utils.ConfigUtils;
@@ -159,7 +160,7 @@ public class ConfigModel implements IBinder {
             return source;
         } else {
             if (TextUtils.isNotEmpty(driverClassName)) {
-                Utils.loadClass(driverClassName);
+                ClassUtil.loadClass(driverClassName);
             }
 
             return new DbDataSource(url, username, password);

@@ -4,7 +4,7 @@ import org.noear.rubber.Rubber;
 import org.noear.solon.Solon;
 import org.noear.luffy.dso.*;
 import luffy.JtRun;
-import org.noear.solon.cloud.utils.http.PreheatUtils;
+import org.noear.solon.net.http.PreheatUtils;
 import org.noear.water.WW;
 import rubberapi.controller.DebugController;
 import rubberapi.controller.PreviewController;

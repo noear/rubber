@@ -98,7 +98,7 @@ public class QueryController implements Handler {
                 String fileName = scheme.replace("/", "_") + ".csv";
                 context.charset("UTF-8");
                 context.contentType("text/csv;charset=UTF-8");
-                context.header("Content-Disposition", "attachment;filename=" + fileName);
+                context.headerSet("Content-Disposition", "attachment;filename=" + fileName);
                 context.output(text);
             } else if (type == 19) {
                 context.output(rubberQuery.sql);

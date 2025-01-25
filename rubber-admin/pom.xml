@@ -25,17 +25,22 @@
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.web.cors</artifactId>
+            <artifactId>solon-web-cors</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.sessionstate.jwt</artifactId>
+            <artifactId>solon-view-freemarker</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.auth</artifactId>
+            <artifactId>solon-sessionstate-jwt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.noear</groupId>
+            <artifactId>solon-security-auth</artifactId>
         </dependency>
 
         <dependency>
@@ -57,18 +62,18 @@
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>solon.cloud.httputils</artifactId>
+            <artifactId>solon-net-httputils</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>grit.server</artifactId>
+            <artifactId>grit-server-api</artifactId>
             <version>${grit.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.noear</groupId>
-            <artifactId>grit-solon-plugin</artifactId>
+            <artifactId>grit-client-solon-plugin</artifactId>
             <version>${grit.version}</version>
         </dependency>
 

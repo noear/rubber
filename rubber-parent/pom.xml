@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.noear</groupId>
         <artifactId>solon-parent</artifactId>
-        <version>2.6.6</version>
+        <version>3.0.7</version>
         <relativePath />
     </parent>
 
@@ -24,13 +24,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
 
-        <redisx.version>1.6.2</redisx.version>
-        <esearchx.version>1.0.25</esearchx.version>
-        <grit.version>1.7.1</grit.version>
+        <redisx.version>1.6.9</redisx.version>
+        <esearchx.version>1.0.27</esearchx.version>
+        <grit.version>2.0.1</grit.version>
 
         <luffy.version>1.7.2</luffy.version>
 
-        <mongox.version>1.0.3</mongox.version>
+        <mongox.version>1.0.5</mongox.version>
 
         <HikariCP.version>4.0.3</HikariCP.version>
 
