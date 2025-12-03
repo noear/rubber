@@ -61,11 +61,11 @@
             <#list items as m>
                 <tr>
                     <#list cols?keys as k>
-                        <td>${m.get(k)!}</td>
+                        <td>${(m.get(k))!}</td>
                     </#list>
                     <td>
                         <#if (is_operator == 1 && block.is_editable>0) >
-                            <a class="t2" href="/rubber/block/item/edit?block_id=${block.block_id}&item_key=${m.get(block.cols_key())}">编辑</a>
+                            <a class="t2" href="/rubber/block/item/edit?block_id=${block.block_id}&item_key=${(m.get(block.cols_key()))!}">编辑</a>
                         </#if>
                     </td>
                 </tr>
