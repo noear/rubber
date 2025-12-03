@@ -1,7 +1,7 @@
 package org.noear.rubber;
 
 import org.noear.rubber.models.SchemeRuleModel;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 
 import java.util.*;
 
@@ -98,7 +98,7 @@ public final class RubberResponse {
 
     public void end(RubberContext context) throws Exception {
         model_json = context.model_json();
-        session_json = ONode.load(context.session); //OMapper.tran(context.session);
+        session_json = ONode.ofBean(context.session); //OMapper.tran(context.session);
         end_time = new Date();
     }
 

@@ -1,6 +1,6 @@
 package org.noear.rubber.models;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.wood.GetHandlerEx;
 import org.noear.wood.IBinder;
 
@@ -51,14 +51,14 @@ public class BlockModel implements IBinder
     private String _cols_str = null;
     public ONode cols() {
         if(_cols == null) {
-            _cols = ONode.load(struct);
+            _cols = ONode.ofJson(struct);
 
-            for(String k: _cols.obj().keySet()){
+            for(String k: _cols.getObject().keySet()){
                 _cols_key = k;
                 break;
             }
 
-            _cols_str = String.join(",", _cols.obj().keySet());
+            _cols_str = String.join(",", _cols.getObject().keySet());
         }
 
         return _cols;

@@ -1,6 +1,6 @@
 package rubberapi.dso;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.wood.DataItem;
 import org.noear.wood.DataList;
 
@@ -8,7 +8,7 @@ public class TxtUtil {
     public static ONode buildJson(DataList dlist){
         ONode jlist = new ONode().asArray();
         for (DataItem item : dlist.getRows()) {
-            jlist.add(ONode.load(item.getMap()));
+            jlist.add(ONode.ofBean(item.getMap()));
         }
         return jlist;
     }

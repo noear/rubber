@@ -1,7 +1,7 @@
 package rubberapi.controller.debug;
 
 import org.noear.rubber.Rubber;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.core.handle.Handler;
 import org.noear.water.utils.TextUtils;
@@ -30,7 +30,7 @@ public class BlockController implements Handler {
             Rubber.updateCache("block:"+block);
         }
 
-        ONode args =  ONode.load(args_str);
+        ONode args =  ONode.ofJson(args_str);
 
         try{
             run(context,block, args);

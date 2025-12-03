@@ -1,6 +1,7 @@
 package rubberadmin.controller.paas;
 
 import com.alibaba.fastjson.JSONObject;
+import org.noear.snack4.codec.TypeRef;
 import org.noear.solon.auth.annotation.AuthPermissions;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.core.handle.UploadedFile;
@@ -266,7 +267,7 @@ public class RubberModelController extends BaseController {
             return viewModel.code(0, "数据不对！");
         }
 
-        List<ModelSerializeModel> list = entity.data.toObjectList(ModelSerializeModel.class);
+        List<ModelSerializeModel> list = entity.data.toBean(TypeRef.listOf(ModelSerializeModel.class));
 
 
         for (ModelSerializeModel vm : list) {

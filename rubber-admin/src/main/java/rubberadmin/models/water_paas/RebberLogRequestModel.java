@@ -1,7 +1,7 @@
 package rubberadmin.models.water_paas;
 
 import lombok.Getter;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.wood.*;
 import org.noear.water.utils.TextUtils;
 
@@ -124,8 +124,8 @@ public class RebberLogRequestModel implements IBinder {
         if(TextUtils.isEmpty(note_json)){
             return "";
         }else{
-            ONode temp = ONode.load(note_json);
-            if(temp.contains("E")){
+            ONode temp = ONode.ofJson(note_json);
+            if(temp.hasKey("E")){
                 StringBuilder sb  =new StringBuilder();
                 sb.append("匹配度=")
                         .append(temp.get("M").get("value").getInt())

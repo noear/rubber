@@ -3,6 +3,7 @@ package rubberadmin.controller.paas;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.noear.snack4.codec.TypeRef;
 import org.noear.solon.Utils;
 import org.noear.solon.auth.annotation.AuthPermissions;
 import org.noear.solon.core.handle.Context;
@@ -550,7 +551,7 @@ public class RubberSchemeController extends BaseController {
             return viewModel.code(0, "数据不对！");
         }
 
-        List<RebberSchemeSerializeModel> list = entity.data.toObjectList(RebberSchemeSerializeModel.class);
+        List<RebberSchemeSerializeModel> list = entity.data.toBean(TypeRef.listOf(RebberSchemeSerializeModel.class));
 
 
         for (RebberSchemeSerializeModel vm : list) {

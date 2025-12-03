@@ -4,7 +4,7 @@ import org.noear.rubber.Rubber;
 import org.noear.rubber.RubberException;
 import org.noear.rubber.RubberResponse;
 import org.noear.rubber.models.LogRequestModel;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Utils;
 import org.noear.solon.cloud.CloudClient;
 import org.noear.solon.cloud.model.Event;
@@ -20,7 +20,7 @@ public class SchemeUtil {
         }
 
         ONode data = new ONode();
-        ONode args = ONode.load(args_str);
+        ONode args = ONode.ofJson(args_str);
 
         data.set("code", 1).set("msg", SystemCode.code_1);
 
@@ -108,7 +108,7 @@ public class SchemeUtil {
 
         data.set("code", 1).set("msg", SystemCode.code_1);
 
-        ONode args = ONode.load(log.args_json);
+        ONode args = ONode.ofJson(log.args_json);
 
         ONode jReq = data.getOrNew("request");
         jReq.set("request_id", log.request_id);
@@ -120,11 +120,11 @@ public class SchemeUtil {
 
         if (log.state >= 2) { //说明已完成
             if (log.policy / 1000 == 1) {
-                jResp.set("matcher", ONode.load(log.matcher_json));
+                jResp.set("matcher", ONode.ofJson(log.matcher_json));
             } else {
-                jResp.set("evaluation", ONode.load(log.evaluation_json));
+                jResp.set("evaluation", ONode.ofJson(log.evaluation_json));
             }
-            jResp.set("session", ONode.load(log.session_json));
+            jResp.set("session", ONode.ofJson(log.session_json));
         } else {
             data.set("code", 2).set("msg", SystemCode.code_2);
 

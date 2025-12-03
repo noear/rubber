@@ -1,7 +1,7 @@
 package rubberapi.utils;
 
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 
 /**
  * Created by noear on 2017/7/31.

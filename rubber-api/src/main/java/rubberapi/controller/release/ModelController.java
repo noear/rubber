@@ -2,7 +2,7 @@ package rubberapi.controller.release;
 
 import org.noear.rubber.Rubber;
 import org.noear.rubber.RubberException;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.core.handle.Handler;
 import org.noear.water.WaterClient;
@@ -48,7 +48,7 @@ public class ModelController implements Handler {
     private void run(Context context, String model,String args_str) throws Exception{
         ONode data = new ONode();
 
-        ONode args = ONode.load(args_str);
+        ONode args = ONode.ofJson(args_str);
 
 
         data.set("code",1).set("msg",SystemCode.code_1);
@@ -61,15 +61,14 @@ public class ModelController implements Handler {
 
 
         try {
-            ONode temp = Rubber.model(model,args, null, false);
+            ONode temp = Rubber.model(model, args, null, false);
 
-            if(temp.count()>0){
-                for(String key : temp.obj().keySet()){
+            if (temp.size() > 0) {
+                for (String key : temp.getObject().keySet()) {
                     data.set("response", temp.get(key));
                     break;
                 }
             }
-
         }
         catch (RubberException ex){
             data.set("code",11).set("msg", SystemCode.code_11(ex.getMessage()));

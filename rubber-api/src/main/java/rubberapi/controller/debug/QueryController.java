@@ -3,7 +3,7 @@ package rubberapi.controller.debug;
 import org.noear.rubber.Rubber;
 import org.noear.rubber.RubberException;
 import org.noear.rubber.RubberQuery;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Utils;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.core.handle.Handler;

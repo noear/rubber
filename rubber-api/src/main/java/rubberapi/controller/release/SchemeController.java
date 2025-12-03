@@ -2,7 +2,7 @@ package rubberapi.controller.release;
 
 import org.noear.rubber.Rubber;
 import org.noear.rubber.models.LogRequestModel;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.core.handle.Handler;
 import org.noear.water.WaterClient;

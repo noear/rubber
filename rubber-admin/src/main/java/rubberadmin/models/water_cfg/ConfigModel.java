@@ -2,7 +2,7 @@ package rubberadmin.models.water_cfg;
 
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Utils;
 import org.noear.solon.core.util.ClassUtil;
 import org.noear.water.WW;

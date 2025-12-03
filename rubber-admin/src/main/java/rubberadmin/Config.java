@@ -1,6 +1,6 @@
 package rubberadmin;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.SolonApp;
 import org.noear.solon.auth.AuthUtil;
 import org.noear.solon.health.HealthHandler;

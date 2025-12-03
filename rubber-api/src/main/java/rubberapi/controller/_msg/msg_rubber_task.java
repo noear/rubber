@@ -2,7 +2,7 @@ package rubberapi.controller._msg;
 
 import org.noear.rubber.Rubber;
 import org.noear.rubber.models.LogRequestModel;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.cloud.CloudClient;
 import org.noear.solon.cloud.CloudEventHandler;
 import org.noear.solon.cloud.annotation.CloudEvent;
@@ -16,7 +16,7 @@ public class msg_rubber_task implements CloudEventHandler {
 
     @Override
     public boolean handle(Event event) throws Throwable {
-        ONode jReq = ONode.load(event.content());
+        ONode jReq = ONode.ofJson(event.content());
 
         String request_id = jReq.get("request_id").getString();
         LogRequestModel log = Rubber.get(request_id);
@@ -24,7 +24,7 @@ public class msg_rubber_task implements CloudEventHandler {
         if (log.log_id > 0) {
             if (log.state == 0) { //等于0才计算
                 Rubber.setBegin(log.log_id);
-                ONode args = ONode.load(log.args_json);
+                ONode args = ONode.ofJson(log.args_json);
 
                 try {
                     SchemeUtil.run(log.log_id, request_id, log.scheme_tagname, log.policy, args, 0, null, false);

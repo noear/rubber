@@ -1,6 +1,6 @@
 package org.noear.rubber.workflow;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.water.utils.TextUtils;
 
 import java.util.ArrayList;
@@ -59,10 +59,10 @@ public class ConditionItem {
         if(TextUtils.isEmpty(expr) == false) {
             list = new ArrayList<>();
 
-            ONode oExpr = ONode.load(expr);
+            ONode oExpr = ONode.ofJson(expr);
 
             ONode d = null;
-            for(String k : oExpr.obj().keySet()){
+            for(String k : oExpr.getObject().keySet()){
                 d = oExpr.get(k);
                 ConditionItem cond = new ConditionItem();
 

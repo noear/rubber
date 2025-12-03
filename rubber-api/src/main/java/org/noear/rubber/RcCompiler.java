@@ -4,7 +4,7 @@ import org.noear.rubber.models.*;
 import org.noear.rubber.workflow.Condition;
 import org.noear.rubber.workflow.ConditionItem;
 import org.noear.rubber.workflow.Workflow;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.water.WaterClient;
 import org.noear.water.model.ConfigM;
 import org.noear.water.utils.TextUtils;

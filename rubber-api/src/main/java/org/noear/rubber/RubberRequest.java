@@ -1,6 +1,6 @@
 package org.noear.rubber;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 
 public final class RubberRequest {
     public String request_id;//请求ID（要求全局唯一，与业务系弘对接使用）

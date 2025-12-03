@@ -1,12 +1,11 @@
 package org.noear.rubber;
 
 import org.noear.rubber.models.*;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.water.WW;
 import org.noear.water.utils.Datetime;
 import org.noear.wood.DbContext;
 import org.noear.wood.DbTableQuery;
-import org.noear.wood.IQuery;
 
 import java.sql.SQLException;
 import java.util.List;

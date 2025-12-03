@@ -1,6 +1,6 @@
 package org.noear.rubber;
 
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Solon;
 import org.noear.water.WaterClient;
 import org.noear.water.utils.TextUtils;
@@ -146,7 +146,7 @@ public class Rubber {
         Object val = RcRunner.runBlock(block_tagName, args);
 
         //3.输出值
-        return ONode.load(val);
+        return ONode.ofBean(val);
     }
 
     public static RubberQuery query(String scheme_tagName, int limit) throws Exception {

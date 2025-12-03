@@ -2,7 +2,7 @@ package org.noear.rubber;
 
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import org.noear.rubber.models.SchemeRuleModel;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.logging.utils.TagsMDC;
 import org.noear.water.WW;
 import org.noear.water.utils.TextUtils;
@@ -58,7 +58,7 @@ public final class RubberContext {
     public ONode model_json() {
         ONode temp = new ONode();
         _modelLib.forEach((k,v)->{
-            temp.set(k, ONode.load((ScriptObjectMirror) v.get("_$md")));
+            temp.set(k, ONode.ofBean((ScriptObjectMirror) v.get("_$md")));
         });
 
         return temp;

@@ -2,7 +2,7 @@ package rubberapi.controller.debug;
 
 import org.noear.rubber.Rubber;
 import org.noear.rubber.RubberException;
-import org.noear.snack.ONode;
+import org.noear.snack4.ONode;
 import org.noear.solon.Utils;
 import org.noear.solon.core.handle.Context;
 import org.noear.solon.core.handle.Handler;
@@ -29,7 +29,7 @@ public class ModelController implements Handler {
             Rubber.updateCache("model:"+model);
         }
 
-        ONode args = ONode.load(args_str);
+        ONode args = ONode.ofJson(args_str);
 
 
         data.set("code",1).set("msg", SystemCode.code_1);
