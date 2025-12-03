@@ -63,7 +63,7 @@
                         <tr>
                             <th>${v}</th>
                             <td>
-                                <input type="text" id="${k}" value="${(item.get(k))!}" />
+                                <input type="text" id="${k}" value="${(item[k])!}" />
                             </td>
                         </tr>
                     </#list>
